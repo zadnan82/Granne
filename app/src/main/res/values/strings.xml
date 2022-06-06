@@ -6,25 +6,41 @@
     <string name="create_Account">Create account</string>
     <string name="login">Login</string>
     <string name="spinner">Select Language</string>
+    <string name="language_selected">Language already selected!</string>
     <!--Logga in aktivitet-->
     <string name="login_Username">Username</string>
     <string name="login_Password">Password</string>
     <string name="Keep_logged_in">Keep me logged in</string>
     <string name="Login">Login</string>
+    <string name="loggedin">Logged In</string>
+    <string name="fail_to_log">Email does not exist or is badly written</string>
     <!--Skapa konto aktivitet-->
     <string name="create_Nickname">Nickname</string>
     <string name="create_Username">Username</string>
+    <string name="create_email">Email</string>
     <string name="create_Password">Password</string>
     <string name="Phone_number">Phone number</string>
     <string name="Code">Code</string>
     <string name="Tell_us_about_yourself">Tell us about yourself</string>
     <string name="Create_account">Create account</string>
+    <string name="accept_tos">You must accept Terms of Service</string>
+    <string name="nickname_6char">Nickname must be longer than 6 characters</string>
+    <string name="pass_6char">Password and Nickname must be longer than 6 characters</string>
+    <string name="empty">Empty form!!</string>
+    <string name="success_create">Successfully created account</string>
+    <string name="fail_login">Email already in use or badly written!</string>
+    <string name="tos_agree">I agree to the terms of service</string>
     <!--Hemskärmen-->
     <string name="Find_Match">Find Match</string>
     <string name="Options">Options</string>
     <string name="Info">Info</string>
     <string name="Stats">Stats</string>
     <string name="Chat">Chat</string>
+    <string name="active_match">Active matches with:</string>
+    <string name="no_active_match">No matches found</string>
+    <string name="aboutme">About me</string>
+    <string name="account_overv">Account Overview</string>
+
     <!--Find Match-->
     <string name="My_Interests">My interests</string>
     <string name="Search_Match">Search match</string>
@@ -56,7 +72,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_this_app">About this app</string>
-    <string name="AboutThisAppText">Ähfksdhfdhfdfdsfkjdsfsdgjsödgsdgjsdjfsdfjsfjsdfk kjsdfhsfksdjhfsdfkwjsdfksfskjfklsdjkfsdfjdfsdjfskljfr akjfkfkdhfdksfhdsfhdsfkdsljfs sdkljsdfk</string>
+    <string name="aboutThisAppText">Granne is an app that makes it possible for you as an older person to find people who share the same interests as you.</string>
+    <string name="how_work">How does it work?</string>
+    <string name="how_work_text1"> The app uses data from your account to find similarities with other people. This process happens inside the Find Match window.</string>
+    <string name="how_work_text2">However you will not be shown to other users until you have entered your interests.</string>
+
+
     <string name="friendzone_always_strives_to_improve_the_service_and_give_you_more_features_that_are_interesting_and_useful_to_you_this_means_that_from_time_to_time_we_may_add_new_product_features_or_make_improvements_and_even_remove_certain_features_and_if_these_actions_do_not_significantly_affect_your_rights_or_obligations_we_may_not_notify_you_before_implementing_them">Friendzone always strives to improve the service and give you more features that are interesting and useful to you this means that from time to time we may add new product features or make improvements and even remove certain features and if these actions do not significantly affect your rights or obligations we may not notify you before implementing them</string>
     <string name="you_can_terminate_your_account_at_any_time_for_any_reason">You can terminate your account at any time for any reason</string>
     <string name="you_must_be_at_least_18_years_old_to_create_an_account_on_friendzone_and_use_the_service">You must be at least 18 years old to create an account on friendzone and use the service</string>

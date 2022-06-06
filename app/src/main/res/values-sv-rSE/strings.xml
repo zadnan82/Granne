@@ -7,25 +7,40 @@
     <string name="create_Account">Skapa konto</string>
     <string name="login">Logga in</string>
     <string name="spinner">Välj Språk</string>
+    <string name="language_selected">Språk redan valt!</string>
     <!--Logga in aktivitet-->
     <string name="login_Username">Användarnamn</string>
     <string name="login_Password">Lösenord</string>
     <string name="Keep_logged_in">Håll mig inloggad</string>
     <string name="Login">Logga in</string>
+    <string name="loggedin">Inloggad</string>
+    <string name="fail_to_log">E-post finns inte eller är dåligt skrivet</string>
     <!--Skapa konto aktivitet-->
     <string name="create_Nickname">Smeknamn</string>
     <string name="create_Username">Användarnamn</string>
+    <string name="create_email">Email</string>
     <string name="create_Password">Lösenord</string>
     <string name="Phone_number">Telefonnummer</string>
     <string name="Code">Kod</string>
     <string name="Tell_us_about_yourself">Berätta om dig själv</string>
     <string name="Create_account">Skapa konto</string>
+    <string name="accept_tos">Du måste acceptera användarvillkoren</string>
+    <string name="nickname_6char">Smeknamn måste vara längre än 6 tecken</string>
+    <string name="pass_6char">Lösenordet och Smeknamn måste vara längre än 6 tecken</string>
+    <string name="empty">Tom form!!</string>
+    <string name="success_create">Kontot skapat!</string>
+    <string name="fail_login">E-post redan används eller dåligt skrivet!</string>
+    <string name="tos_agree">Jag godkänner användarvillkoren</string>
     <!--Hemskärmen-->
     <string name="Find_Match">Hitta matchningar</string>
     <string name="Options">Alternativ</string>
     <string name="Info">Info</string>
     <string name="Stats">Statistik</string>
     <string name="Chat">Chatt</string>
+    <string name="active_match">Aktiva matcher med:</string>
+    <string name="no_active_match">Inga matchningar funna</string>
+    <string name="aboutme">Om mig</string>
+    <string name="account_overv">Konto översikt</string>
     <!--Find Match-->
     <string name="My_Interests">Mina intressen</string>
     <string name="Search_Match">Sök matchning</string>
@@ -52,5 +67,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hej tomt fragment</string>
     <string name="about_this_app">Om den här appen</string>
-    <string name="AboutThisAppText">Ähfksdhfdhfdfdsfkjdsfsdgjsödgsdgjsdjfsdfjsfjsdfk kjsdfhsfksdjhfsdfkwjsdfksfskjfklsdjkfsdfjdfsdjfskljfr akjfkfkdhfdksfhdsfhdsfkdsljfs sdkljsdfk</string>
+    <string name="aboutThisAppText">Granne är en app som gör det möjligt för dig som äldre att hitta personer som delar samma intressen som du.</string>
+    <string name="how_work">Hur fungerar det?</string>
+    <string name="how_work_text1"> Appen använder data från ditt konto för att hitta likheter med andra människor. Denna process sker i fönstret Hitta matchning.</string>
+    <string name="how_work_text2">Du kommer dock inte att visas för andra användare förrän du har angett dina intressen.</string>
+
+
 </resources>

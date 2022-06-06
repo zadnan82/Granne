@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/nicknameEditText"
+            android:id="@+id/newnicknameET"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
         <Button
-            android:id="@+id/nicknameButton"
+            android:id="@+id/nicknameBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
@@ -47,11 +47,11 @@
             android:text="@string/ApplyUsername"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/nicknameEditText"
+            app:layout_constraintStart_toEndOf="@+id/newnicknameET"
             app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
         <Button
-            android:id="@+id/browsePicturesButton"
+            android:id="@+id/browsePicturesBtn"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -63,7 +63,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <Button
-            android:id="@+id/applyPicturesButton"
+            android:id="@+id/applyPicturesBtn"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -72,10 +72,10 @@
             android:text="@string/ApplyPicture"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/browsePicturesButton" />
+            app:layout_constraintTop_toBottomOf="@+id/browsePicturesBtn" />
 
         <Button
-            android:id="@+id/deleteAccountButton"
+            android:id="@+id/deleteAccountBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -86,7 +86,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonSignOut" />
+            app:layout_constraintTop_toBottomOf="@+id/signOutBtn" />
 
         <Spinner
             android:id="@+id/spinnerLocation"
@@ -101,7 +101,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/locationButton"
+            android:id="@+id/locationBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -152,7 +152,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/profileImage"
             android:layout_width="140dp"
             android:layout_height="150dp"
             android:layout_marginStart="10dp"
@@ -175,7 +175,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <Button
-            android:id="@+id/buttonSignOut"
+            android:id="@+id/signOutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -189,6 +189,16 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:layout_constraintVertical_bias="0.0" />
 
+        <ImageButton
+            android:id="@+id/cancelBtn"
+            android:layout_width="34dp"
+            android:layout_height="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.994"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.09"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

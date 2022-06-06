@@ -15,14 +15,13 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
-
-    lateinit var buttonRegister: Button
-    lateinit var nicknameEditText: EditText
-    lateinit var emailEditText: EditText
-    lateinit var passwordEditText: EditText
-    lateinit var tosText: TextView
-    lateinit var tosBox: CheckBox
-
+    lateinit var registerBtn: Button
+    lateinit var nicknameET: EditText
+    lateinit var emailET: EditText
+    lateinit var passwordET: EditText
+    lateinit var termOfServiceTV: TextView
+    lateinit var termOfServiceBox: CheckBox
+    lateinit var cancelBtn: ImageButton
     lateinit var nickname: String
     lateinit var email: String
     lateinit var password: String
@@ -32,30 +31,39 @@ class CreateAccountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_account)
         auth = Firebase.auth
 
-        buttonRegister = findViewById(R.id.buttonRegister)
-        nicknameEditText = findViewById(R.id.nicknameEditText)
-        emailEditText = findViewById(R.id.emailEditText)
-        passwordEditText = findViewById(R.id.passwordEditText)
-        tosText = findViewById(R.id.tosText)
-        tosBox = findViewById(R.id.tosCheckBox)
+        registerBtn = findViewById(R.id.registerBtn)
+        nicknameET = findViewById(R.id.nicknameET)
+        emailET = findViewById(R.id.emailET)
+        passwordET = findViewById(R.id.passwordET)
+        termOfServiceTV = findViewById(R.id.tosTV)
+        termOfServiceBox = findViewById(R.id.tosCheckBox)
+        cancelBtn= findViewById(R.id.cancelBtn)
 
-        buttonRegister.setOnClickListener {
+        cancelBtn.setOnClickListener{
+            finish()
+        }
+
+        registerBtn.setOnClickListener {
             when {
                 checkUserInputs() -> {
-                    if (password.length >= 6) {
-                        if (nickname.length >= 6) {
-                            if (tosBox.isChecked) {
+                    if (password.length >= 6 && nickname.length >= 6 ) {
+                            if (termOfServiceBox.isChecked) {
                                 createAccount(email, password, nickname)
-                            } else showToast("You must accept Terms of Service")
-                        } else showToast("Nickname must be longer than 6 characters")
-                    } else showToast("Password must be longer than 6 characters")
+                            } else  Toast.makeText(
+                                this, R.string.accept_tos, Toast.LENGTH_LONG
+                            ).show()
+                    } else  Toast.makeText(
+                        this, R.string.pass_6char, Toast.LENGTH_LONG
+                    ).show()
                 }
 
-                !checkUserInputs() -> showToast("Empty inputs!")
+                !checkUserInputs() ->  Toast.makeText(
+                    this, R.string.empty, Toast.LENGTH_LONG
+                ).show()
             }
         }
 
-        tosText.setOnClickListener {
+        termOfServiceTV.setOnClickListener {
             val dialog = TosDialogFragment()
             dialog.show(supportFragmentManager, "tosDialog")
         }
@@ -66,8 +74,10 @@ class CreateAccountActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success
-                    showToast("Successfully created account")
+                    Toast.makeText(
+                        this, R.string.success_create, Toast.LENGTH_LONG
+                    ).show()
+
                     val user = auth.currentUser
                     val uid: String = user!!.uid
 
@@ -76,23 +86,25 @@ class CreateAccountActivity : AppCompatActivity() {
                         "email" to email,
                         "uid" to user.uid,
                         "location" to "",
-                        "aboutme" to "",  //  These will be filled later in the app
+                        "aboutme" to ""
                     )
 
                     db.collection("userData")
                         .document(uid).set(currentUser)
                         .addOnSuccessListener {
-                            Log.d("!", "User added to Database with same UID as Firestore Auth ")
+                            Log.d("!!!", "User added to Database with same UID as Firestore Auth ")
                         }
                         .addOnFailureListener { e ->
-                            Log.w("!", "Error adding document", e)
+                            Log.w("!!!", "Error adding document", e)
                         }
                     updateUI(user)
 
                 } else {
-                    // Sign in failed
-                    Log.w("!", "createUserWithEmail:failure", task.exception)
-                    showToast("Email already in use or badly written")
+
+                    Log.w("!!!", "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        this, R.string.fail_login, Toast.LENGTH_LONG
+                    ).show()
                     updateUI(null)
                 }
             }
@@ -100,28 +112,18 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            Log.d("!", "Account created / logged in")
-            Log.d("!", "----------------------------")
-            Log.d("!", "Nickname: $nickname")
-            Log.d("!", "Email: $email")
-            Log.d("!", "Uid: ${user.uid}")
+            Log.d("!!!", "Account to $nickname $email is created, UID is ${user.uid}")
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
 
-            val startHomeActivityIntent = Intent(this, HomeActivity::class.java)
-            startActivity(startHomeActivityIntent)
-
-        } else Log.d("!", "User failed to log in")
+        } else Log.d("!!!", "User failed to log in")
     }
 
     private fun checkUserInputs(): Boolean {
-        nickname = nicknameEditText.text.toString()
-        email = emailEditText.text.toString()
-        password = passwordEditText.text.toString()
+        nickname = nicknameET.text.toString()
+        email = emailET.text.toString().replaceFirstChar { it.lowercase() }
+        password = passwordET.text.toString()
 
         return !(nickname.isEmpty() || email.isEmpty() || password.isEmpty())
-    }
-
-    private fun showToast(toastMessage: String) {
-        val toast = Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT)
-        toast.show()
     }
 }

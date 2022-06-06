@@ -1,11 +1,10 @@
 package com.example.granne
 
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -16,6 +15,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
+    lateinit var submitBtn: Button
+    lateinit var enterEmailET: EditText
+    lateinit var cancelBtn : ImageButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,40 +26,31 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        lateinit var btn_submitPassword: Button
-        lateinit var et_enterEmail: EditText
+        submitBtn = findViewById(R.id.submitBtn)
+        enterEmailET = findViewById(R.id.enterEmailET)
+        cancelBtn = findViewById(R.id.cancelBtn)
 
-        btn_submitPassword = findViewById(R.id.btn_submitPassword)
-        et_enterEmail = findViewById(R.id.et_enterEmail)
+        cancelBtn.setOnClickListener {
+            finish()
+        }
 
-        btn_submitPassword.setOnClickListener {
-            val email: String = et_enterEmail.text.toString().trim { it <= ' ' }
+        submitBtn.setOnClickListener {
+            val email: String = enterEmailET.text.toString().trim { it <= ' ' }
             if (email.isEmpty()) {
-                Log.d(TAG, "Enter Email")
-                Toast.makeText(
-                    this@ForgotPasswordActivity,
-                    "Please enter your email adress.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }else{
+
+                Toast.makeText(this, "Please enter your email adress.",
+                    Toast.LENGTH_SHORT).show()
+            } else {
                 Firebase.auth.sendPasswordResetEmail(email)
                     .addOnCompleteListener { task ->
                         if(task.isSuccessful){
-                            Log.d(TAG, "Email sent")
-                            Toast.makeText(
-                                this@ForgotPasswordActivity,
-                                "Email successfully sent to reset your password.",
-                                Toast.LENGTH_LONG
-                            ).show()
-
+                            Toast.makeText(this, "Email successfully sent to reset your password.",
+                                Toast.LENGTH_LONG).show()
                             finish()
                         }
                         else{
-                            Toast.makeText(
-                                this@ForgotPasswordActivity,
-                                task.exception!!.message.toString(),
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Toast.makeText(this, task.exception!!.message.toString(),
+                                Toast.LENGTH_LONG).show()
                         }
                     }
             }

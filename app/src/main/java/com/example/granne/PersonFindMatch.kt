@@ -5,7 +5,7 @@ data class PersonFindMatch(
     val aboutMe: Any? = null,
     val intressen: MutableCollection<Any>? = null,
     var uid: Any? = null,
-    val buttonAdd: Any? = null,
-    val image: Int? = R.drawable.userim,
+    val buttonAdd: Any? = null, // why
+    val image: Int? = R.drawable.userim, // why
 ) {
 }
