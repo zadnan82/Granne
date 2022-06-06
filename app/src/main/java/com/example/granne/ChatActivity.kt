@@ -15,12 +15,11 @@ import com.google.firebase.ktx.Firebase
 
 class ChatActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
 
-    lateinit var buttonSendMessage: Button
-    lateinit var nicknameTextView: TextView
-    lateinit var messageEditText: EditText
+    lateinit var sendMsgBtn: Button
+    lateinit var nickNameTV: TextView
+    lateinit var newMsgET: EditText
     lateinit var textDisplay: TextView
 
     companion object {
@@ -37,29 +36,28 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        auth = Firebase.auth
 
         textDisplay = findViewById(R.id.textDisplay)
-        buttonSendMessage = findViewById(R.id.buttonSendMessage)
-        nicknameTextView = findViewById(R.id.nicknameTextView)
-        messageEditText = findViewById(R.id.messageEditText)
-        nicknameTextView.text = "User"
+        sendMsgBtn = findViewById(R.id.sendMsgBtn)
+        nickNameTV = findViewById(R.id.nickNameTV)
+        newMsgET = findViewById(R.id.newMsgET)
+        nickNameTV.text = "User"
 
 
         realtimeUpdateListener()
 
-        buttonSendMessage.setOnClickListener {
+        sendMsgBtn.setOnClickListener {
             sendMessage()
         }
     }
 
     private fun sendMessage() {
         val newMessage = mapOf(
-            NAME_FIELD to nicknameTextView.text.toString(),
-            TEXT_FIELD to messageEditText.text.toString()
+            NAME_FIELD to nickNameTV.toString(),
+            TEXT_FIELD to newMsgET.text.toString()
         )
         firestoreChat.set(newMessage).addOnSuccessListener {
-            Toast.makeText(this@ChatActivity, "Message Sent", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Message Sent", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener { e -> e.message?.let { Log.e("ERROR", it) } }
 
     }

@@ -19,10 +19,8 @@ import kotlin.system.exitProcess
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
     lateinit var languageSpinner: Spinner
     lateinit var locale: Locale
-
     private var currentLanguage = "en"
     private var currentLang: String? = null
 

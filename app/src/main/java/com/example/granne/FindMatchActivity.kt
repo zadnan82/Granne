@@ -142,7 +142,6 @@ class FindMatchActivity : AppCompatActivity() {
                 val matchedUsersNickname = document.data!!.getValue("nickname").toString()
                 val matchedUsersLocation = document.data!!.getValue("location").toString()
                 val matchedUsersAboutMe = document.data!!.getValue("aboutme").toString()
-                val matchedUsersUid = document.data!!.getValue("uid").toString()
 
                 Log.d("!", "<------------------------ Matched user info ------------------------>")
                 Log.d("!", "You matched with: $matchedUsersNickname")
@@ -156,13 +155,13 @@ class FindMatchActivity : AppCompatActivity() {
                 persons.add(PersonFindMatch(matchedUsersNickname,
                     matchedUsersAboutMe,
                     matchingUserInterests,
-                    matchedUsersUid))
+                    matchinguserId))
 
             }
         matchingpplAdapter.notifyDataSetChanged()
 
     }
-
+/*
     private fun addToList(
         nickname: String,
         aboutMe: String,
@@ -177,6 +176,8 @@ class FindMatchActivity : AppCompatActivity() {
 
 
     }
+
+ */
 
 
 

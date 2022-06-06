@@ -38,7 +38,6 @@ class SettingsDialogFragment : DialogFragment() {
     var curFile: Uri? = null
     val imageRef = Firebase.storage.reference
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

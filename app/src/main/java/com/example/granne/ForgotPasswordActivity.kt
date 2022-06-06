@@ -19,7 +19,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
     lateinit var enterEmailET: EditText
     lateinit var cancelBtn : ImageButton
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)

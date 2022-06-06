@@ -17,13 +17,8 @@ class ChatRecyclerAdapter(
     private var userUid: MutableList<String>,
 ) : RecyclerView.Adapter<ChatRecyclerAdapter.ViewHolder>() {
 
-    var auth = Firebase.auth
-    val db = Firebase.firestore
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         val itemNickname: TextView = itemView.findViewById(R.id.nicknameText)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,7 +31,6 @@ class ChatRecyclerAdapter(
         holder.itemNickname.text = nickname[position]
 
         holder.itemView.setOnClickListener {
-            //When pressing on a user in the list, go to ChatRoomActivity
             val intent = Intent(holder.itemView.context, ChatRoomActivity::class.java)
                 .putExtra("secondUserNickname", nickname[position])
                 .putExtra("secondUserUid", userUid[position])

@@ -9,9 +9,9 @@
     tools:ignore="HardcodedText">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatRecycleView"
+        android:id="@+id/chatusersRV"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

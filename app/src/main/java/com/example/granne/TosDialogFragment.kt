@@ -19,6 +19,7 @@ class TosDialogFragment : DialogFragment() {
         cancelBtn.setOnClickListener {
             dismiss()
         }
+
         return rootView
     }
 }

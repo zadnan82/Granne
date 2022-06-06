@@ -22,7 +22,6 @@ class StatsDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-
         val rootView: View = inflater.inflate(R.layout.stats_dialog_fragment, container, false)
         val nicknameTV = rootView.findViewById<TextView>(R.id.nicknameTV)
         val emailTV = rootView.findViewById<TextView>(R.id.emailTV)

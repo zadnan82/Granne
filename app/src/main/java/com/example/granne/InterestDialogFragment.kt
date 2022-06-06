@@ -23,9 +23,7 @@ class InterestDialogFragment : DialogFragment() {
     private lateinit var netflixBox: CheckBox
     private lateinit var cancelBtn : ImageButton
     lateinit var saveChangesBtn: Button
-
     lateinit var auth: FirebaseAuth
-
     val db = Firebase.firestore
 
     override fun onCreateView(

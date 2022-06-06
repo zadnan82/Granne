@@ -6,64 +6,47 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.example.granne.Constants.FB_REF
+
 
 class ChatListActivity : AppCompatActivity() {
-
-    private lateinit var recyclerView: RecyclerView
     private var nicknameList = mutableListOf<String>()
     private var userUidList = mutableListOf<String>()
-
-    private lateinit var auth: FirebaseAuth
-    val db = Firebase.firestore
+    private lateinit var chatusersRV: RecyclerView
+    lateinit var chatusersAdapter: ChatRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
-        auth = Firebase.auth
+
+        chatusersRV = findViewById(R.id.chatusersRV)
+
+        chatusersRV.layoutManager = LinearLayoutManager(this)
+        chatusersAdapter = ChatRecyclerAdapter( nicknameList, userUidList)
+        chatusersRV.adapter = chatusersAdapter
 
         getAllMatchedUsers()
     }
 
     private fun getAllMatchedUsers() {
-        val docRefSecondUser = db.collection("userData").document(auth.currentUser!!.uid)
-            .collection("matchedUsers")
-
-        docRefSecondUser.get()
+        FB_REF.collection("matchedUsers").get()
             .addOnSuccessListener { result ->
-                // Shows all our matched users in the RecycleView
                 if (result.isEmpty) {
-                    Toast.makeText(applicationContext,
-                        "You have no active chats!",
+                    Toast.makeText(applicationContext, "You have no active chats!",
                         Toast.LENGTH_SHORT).show()
-
                 } else {
                     for (document in result) {
                         Log.d("!", "Matched users uid > ${document.id} ")
-
-                        // For each matched user get their nickname
-                        docRefSecondUser.document(document.id)
+                        Constants.FB_REF.collection("matchedUsers").document(document.id)
                             .get()
                             .addOnSuccessListener { name ->
                                 val nickname = name.data!!.getValue("nickname").toString()
-
-                                addToList(nickname, document.id)
+                                nicknameList.add(nickname)
+                                userUidList.add(document.id)
                             }
                     }
+                    chatusersAdapter.notifyDataSetChanged()
                 }
             }
     }
-
-    private fun addToList(nickname: String, userUid: String) {
-        recyclerView = findViewById(R.id.chatRecycleView)
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = ChatRecyclerAdapter(nicknameList, userUidList)
-        nicknameList.add(nickname)
-        userUidList.add(userUid)
-    }
-
 }
