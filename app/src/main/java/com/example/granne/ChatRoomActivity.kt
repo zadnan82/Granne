@@ -15,8 +15,6 @@ import com.google.firebase.ktx.Firebase
 
 class ChatRoomActivity : AppCompatActivity() {
 
-    data class Message(val name: String? = null, val text: String? = null)
-
 
     private lateinit var auth: FirebaseAuth
     private lateinit var myNickname: String
@@ -26,7 +24,7 @@ class ChatRoomActivity : AppCompatActivity() {
     private lateinit var newMessageET: EditText
     private lateinit var messageTV: TextView
     private lateinit var sendBtn: Button
-    private lateinit var chatuserNickNameTV: TextView
+    private lateinit var chatUserNickNameTV: TextView
     lateinit var messageList: ArrayList<String>
     val db = Firebase.firestore
     private var TAG = "ChatRoomActivity"
@@ -40,16 +38,22 @@ class ChatRoomActivity : AppCompatActivity() {
         messageTV = findViewById(R.id.messageTV)
         newMessageET = findViewById(R.id.newMessageET)
         sendBtn = findViewById(R.id.sendBtn)
-        chatuserNickNameTV = findViewById(R.id.chatuserNickNameTV)
+        chatUserNickNameTV = findViewById(R.id.chatuserNickNameTV)
 
         secondUserNickname = intent.getStringExtra("secondUserNickname").toString()
         secondUserUid = intent.getStringExtra("secondUserUid").toString()
 
-                FB_REF.collection("matchedUsers").document(secondUserUid).get()
-                    .addOnSuccessListener { documents ->
-                        chatKey = documents.data!!.getValue("chatId").toString()
-                        createChatChannel(chatKey)
-                    }
+        getChatKey()
+
+    }
+
+    fun getChatKey() {
+
+        FB_REF.collection("matchedUsers").document(secondUserUid).get()
+            .addOnSuccessListener { documents ->
+                chatKey = documents.data!!.getValue("chatId").toString()
+                createChatChannel(chatKey)
+            }
     }
 
     private fun createChatChannel(chatKey: String) {
@@ -79,7 +83,7 @@ class ChatRoomActivity : AppCompatActivity() {
     private fun updateChatUi() {
         val chatDocRef = db.collection("chatRooms").document(chatKey)
         // Sets title for the chatroom
-        chatuserNickNameTV.text = secondUserNickname
+        chatUserNickNameTV.text = secondUserNickname
 
         chatDocRef.get()
             .addOnSuccessListener { list ->

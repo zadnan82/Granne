@@ -14,7 +14,8 @@ import com.example.granne.Constants.UID
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PersonFindMatchRecycleViewAdapter(val context: Context, val persons: List<PersonFindMatch>
+class PersonFindMatchRecycleViewAdapter(
+    val context: Context, val persons: List<PersonFindMatch>
 ) : RecyclerView.Adapter<PersonFindMatchRecycleViewAdapter.ViewHolder>() {
 
     val db = Firebase.firestore
@@ -48,16 +49,11 @@ class PersonFindMatchRecycleViewAdapter(val context: Context, val persons: List<
                 "chatId" to veryBadIdGenerator
             )
 
-            Log.d("!", ">> ${person.name}}")
-            Log.d("!", ">> ${person.aboutMe}}")
-            Log.d("!", ">> ${person.intressen}}")
-            Log.d("!", ">> ${person.uid}}")
-
-            db.collection("userData").document(UID)
-                .collection("matchedUsers").document(matchinguserUID).set(mapOfDetails)
+            Constants.FB_REF.collection("matchedUsers")
+                .document(matchinguserUID).set(mapOfDetails)
                 .addOnSuccessListener {
 
-                   Toast.makeText(context, "Added $matchinguserNickname to chat list!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.addtochat, Toast.LENGTH_SHORT).show()
                     addYourselfToSecondUserMatchedList(matchinguserUID, veryBadIdGenerator)
                 }
         }
@@ -74,17 +70,18 @@ class PersonFindMatchRecycleViewAdapter(val context: Context, val persons: List<
 
     private fun addYourselfToSecondUserMatchedList(matchinguserUID: String, chatId: String) {
 
-                val mapOfDetails = hashMapOf(
-                    "nickname" to NICKNAME,
-                    "uid" to UID,
-                    "chatId" to chatId )
+        val mapOfDetails = hashMapOf(
+            "nickname" to NICKNAME,
+            "uid" to UID,
+            "chatId" to chatId
+        )
 
-                db.collection("userData").document(matchinguserUID)
-                    .collection("matchedUsers").document(UID)
-                    .set(mapOfDetails)
-                    .addOnSuccessListener {
-                       // Added yourself to the other persons Matched users list!
-                    }
+        db.collection("userData").document(matchinguserUID)
+            .collection("matchedUsers").document(UID)
+            .set(mapOfDetails)
+            .addOnSuccessListener {
+                // Added yourself to the other persons Matched users list!
+            }
     }
 
 }

@@ -9,7 +9,7 @@
     tools:ignore="HardcodedText">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatusersRV"
+        android:id="@+id/chatUsersRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"

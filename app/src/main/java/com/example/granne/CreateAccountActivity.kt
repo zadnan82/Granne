@@ -39,35 +39,34 @@ class CreateAccountActivity : AppCompatActivity() {
         passwordET = findViewById(R.id.passwordET)
         termOfServiceTV = findViewById(R.id.tosTV)
         termOfServiceBox = findViewById(R.id.tosCheckBox)
-        cancelBtn= findViewById(R.id.cancelBtn)
+        cancelBtn = findViewById(R.id.cancelBtn)
 
-        cancelBtn.setOnClickListener{
+        cancelBtn.setOnClickListener {
             finish()
         }
 
         registerBtn.setOnClickListener {
             when {
                 checkUserInputs() -> {
-                    if (password.length >= 6 && nickname.length >= 6 ) {
-                            if (termOfServiceBox.isChecked) {
-                                createAccount(email, password, nickname)
-                            } else  Toast.makeText(
-                                this, R.string.accept_tos, Toast.LENGTH_LONG
-                            ).show()
-                    } else  Toast.makeText(
+                    if (password.length >= 6 && nickname.length >= 6) {
+                        if (termOfServiceBox.isChecked) {
+                            createAccount(email, password, nickname)
+                        } else Toast.makeText(
+                            this, R.string.accept_tos, Toast.LENGTH_LONG
+                        ).show()
+                    } else Toast.makeText(
                         this, R.string.pass_6char, Toast.LENGTH_LONG
                     ).show()
                 }
 
-                !checkUserInputs() ->  Toast.makeText(
+                !checkUserInputs() -> Toast.makeText(
                     this, R.string.empty, Toast.LENGTH_LONG
                 ).show()
             }
         }
 
         termOfServiceTV.setOnClickListener {
-            val dialog = TosDialogFragment()
-            dialog.show(supportFragmentManager, "tosDialog")
+            TosDialogFragment().show(supportFragmentManager, "tosDialog")
         }
 
     }
@@ -94,7 +93,7 @@ class CreateAccountActivity : AppCompatActivity() {
                     db.collection("userData")
                         .document(uid).set(currentUser)
                         .addOnSuccessListener {
-                             }
+                        }
                         .addOnFailureListener { e ->
                             Log.w(TAG, "Error adding document", e)
                         }

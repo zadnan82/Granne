@@ -22,6 +22,7 @@ class CustomDialogFragment : DialogFragment() {
             dismiss()
         }
 
+
         return rootView
     }
 }

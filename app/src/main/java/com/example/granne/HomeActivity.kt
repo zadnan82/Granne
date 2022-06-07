@@ -1,39 +1,17 @@
 package com.example.granne
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.Toast
-import com.bumptech.glide.Glide
+import com.example.granne.Constants.NICKNAME
 import com.example.granne.Constants.update
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
-import java.io.ByteArrayOutputStream
-import java.lang.Exception
-import java.util.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-
-const val REQUEST_CODE_IMAGE_PICK = 0
-const val CAMERA_REQUEST_CODE = 1
-const val START_REQUEST_CAMERA = 2
 
 
 class HomeActivity : AppCompatActivity() {
@@ -45,7 +23,6 @@ class HomeActivity : AppCompatActivity() {
     lateinit var optionsBtn: ImageButton
     lateinit var chatBtn: ImageButton
     lateinit var infoBtn: ImageButton
-    lateinit var profilePicture : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,20 +37,9 @@ class HomeActivity : AppCompatActivity() {
         optionsBtn = findViewById(R.id.optionsBtn)
         chatBtn = findViewById(R.id.chatBtn)
         infoBtn = findViewById(R.id.infoBtn)
-        profilePicture = findViewById(R.id.profilePicture)
 
-
-        val imageRef = FirebaseStorage.getInstance().getReference().child("${Constants.UID}/profileimage")
-        val storageReference = Firebase.storage.reference
-
-        imageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
-            Glide.with(this )
-                .load(storageReference)
-                .into(profilePicture)
-        }.addOnFailureListener {
-        }
-
-        nicknameUnderIcon.text = Constants.NICKNAME
+        // Nickname is picked from Constants File
+        nicknameUnderIcon.text = NICKNAME
 
         chatBtn.setOnClickListener {
             startActivity(Intent(this, ChatListActivity::class.java))
@@ -88,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         infoBtn.setOnClickListener {
-           CustomDialogFragment().show(supportFragmentManager, "customDialog")
+            CustomDialogFragment().show(supportFragmentManager, "customDialog")
         }
     }
 
@@ -97,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        // When user presses back, application closes
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_HOME)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK

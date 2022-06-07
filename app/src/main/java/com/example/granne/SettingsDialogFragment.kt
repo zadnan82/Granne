@@ -13,9 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
-import android.widget.AdapterView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -26,18 +24,24 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
-import java.util.*
+
+
+const val REQUEST_CODE_IMAGE_PICK = 0
+const val CAMERA_REQUEST_CODE = 1
+const val START_REQUEST_CAMERA = 2
+
 
 class SettingsDialogFragment : DialogFragment() {
 
     private lateinit var auth: FirebaseAuth
-    lateinit var profileImage : ImageView
+    lateinit var profileImage: ImageView
     val db = Firebase.firestore
-    var choosenImageUrl: String? = null
-    var choosenImageBitmap: Bitmap? = null
+    var chosenImageUrl: String? = null
+    var chosenImageBitmap: Bitmap? = null
     var curFile: Uri? = null
     val imageRef = Firebase.storage.reference
     private var TAG = "SettingsDialogFragment"
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,8 +58,8 @@ class SettingsDialogFragment : DialogFragment() {
         val locationBtn = rootView.findViewById<Button>(R.id.locationBtn)
         val deleteAccountBtn = rootView.findViewById<Button>(R.id.deleteAccountBtn)
         val applyPicturesBtn = rootView.findViewById<Button>(R.id.applyPicturesBtn)
-        profileImage= rootView.findViewById(R.id.profileImage)
         val cancelBtn = rootView.findViewById<ImageButton>(R.id.cancelBtn)
+        profileImage = rootView.findViewById(R.id.profileImage)
 
         auth = Firebase.auth
 
@@ -66,7 +70,7 @@ class SettingsDialogFragment : DialogFragment() {
         nicknameBtn.setOnClickListener {
             val nickname = nicknameET.text.toString()
             when (nickname.isEmpty()) {
-                true ->  Toast.makeText(activity, "Please enter a new username!", Toast.LENGTH_SHORT).show()
+                true -> Toast.makeText(activity, R.string.newuser, Toast.LENGTH_SHORT).show()
                 false -> {
                     if (nickname.length < 6) {
                         Toast.makeText(activity, R.string.nickname_6char, Toast.LENGTH_SHORT).show()
@@ -74,11 +78,12 @@ class SettingsDialogFragment : DialogFragment() {
                         db.collection("userData").document(Constants.UID)
                             .update("nickname", nickname)
                             .addOnSuccessListener {
-                                Toast.makeText(activity, "Nickname changed!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity, "Nickname changed!", Toast.LENGTH_SHORT)
+                                    .show()
                                 nicknameET.setText("")
                             }
 
-                            .addOnFailureListener { e -> Log.d("!", "Error:", e) }
+                            .addOnFailureListener { e -> Log.d(TAG, "Error:", e) }
                     }
                 }
             }
@@ -100,7 +105,7 @@ class SettingsDialogFragment : DialogFragment() {
             db.collection("userData").document(Constants.UID)
                 .update("location", newLocation)
                 .addOnSuccessListener {
-                    Toast.makeText(activity, "Updated location", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, R.string.locationchanged, Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding document", e)
@@ -121,8 +126,10 @@ class SettingsDialogFragment : DialogFragment() {
         signOutBtn.setOnClickListener {
             auth.signOut()
             val intent = Intent(activity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            )
             startActivity(intent)
         }
 
@@ -133,7 +140,7 @@ class SettingsDialogFragment : DialogFragment() {
                     FirebaseAuth.getInstance().currentUser!!.delete()
                         .addOnCompleteListener {
                             // User deleted in cloud database and auth
-                            Toast.makeText(activity, "Account deleted!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, R.string.accdeleted, Toast.LENGTH_SHORT).show()
                             val returnToLoginScreen = Intent(activity, MainActivity::class.java)
                             startActivity(returnToLoginScreen)
                         }
@@ -146,10 +153,9 @@ class SettingsDialogFragment : DialogFragment() {
     }
 
     fun uploadImage() {
-        if(choosenImageUrl != null || choosenImageBitmap == null) {
+        if (chosenImageUrl != null || chosenImageBitmap == null) {
             uploadImageToStorage()
-        }
-        else if(choosenImageBitmap != null || choosenImageUrl != null) {
+        } else if (chosenImageBitmap != null || chosenImageUrl != null) {
             uploadImageAsBitmapToStorage()
         }
     }
@@ -162,47 +168,49 @@ class SettingsDialogFragment : DialogFragment() {
         // profile image replaced everytime user changes it instead of saving multiple images in FB
         var uploadTask = imageRef.child("${Constants.UID}/profileimage").putBytes(data)
 
-         uploadTask.continueWithTask { task ->
+        uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
                     throw it
                 }
             }
-             imageRef.child("${Constants.UID}/profileimage").downloadUrl }
-             .addOnCompleteListener { task ->
-                 if (task.isSuccessful) {
-                     val downloadUri = task.result
-                     choosenImageUrl = downloadUri.toString()
-            }
+            imageRef.child("${Constants.UID}/profileimage").downloadUrl
         }
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    chosenImageUrl = downloadUri.toString()
+                }
+            }
     }
 
     private fun uploadImageToStorage() = CoroutineScope(Dispatchers.IO)
         .launch {
-        try {
-            curFile?.let {
+            try {
+                curFile?.let {
 
-                val uploadTask = imageRef.child("${Constants.UID}/profileimage").putFile(it)
-                 uploadTask.continueWithTask { task ->
-                    if (!task.isSuccessful) {
-                        task.exception?.let {
-                            throw it
+                    val uploadTask = imageRef.child("${Constants.UID}/profileimage").putFile(it)
+                    uploadTask.continueWithTask { task ->
+                        if (!task.isSuccessful) {
+                            task.exception?.let {
+                                throw it
+                            }
+                        }
+                        imageRef.child("${Constants.UID}/profileimage")
+                            .downloadUrl
+                    }.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val downloadUri = task.result
+                            chosenImageUrl = downloadUri.toString()
                         }
                     }
-                    imageRef.child("${Constants.UID}/profileimage")
-                        .downloadUrl }.addOnCompleteListener { task ->
-                     if (task.isSuccessful) {
-                        val downloadUri = task.result
-                        choosenImageUrl = downloadUri.toString()
-                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                 }
             }
-        } catch (e: Exception) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-            }
         }
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -212,13 +220,13 @@ class SettingsDialogFragment : DialogFragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         fun innerCheck(name: String) {
             if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, "$name tillåtelse nekad", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "$name denied", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "$name tillåtelse godkänd", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "$name granted", Toast.LENGTH_SHORT).show()
             }
         }
         when (requestCode) {
-            CAMERA_REQUEST_CODE -> innerCheck("kamera")
+            CAMERA_REQUEST_CODE -> innerCheck("camera")
         }
     }
 
@@ -231,7 +239,7 @@ class SettingsDialogFragment : DialogFragment() {
         } else if (requestCode == START_REQUEST_CAMERA && resultCode == Activity.RESULT_OK && data != null) {
             val takenImage = data.extras?.get("data") as Bitmap
             profileImage.setImageBitmap(takenImage)
-            choosenImageBitmap = takenImage
+            chosenImageBitmap = takenImage
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }

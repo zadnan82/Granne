@@ -20,6 +20,7 @@ class TosDialogFragment : DialogFragment() {
             dismiss()
         }
 
+
         return rootView
     }
 }

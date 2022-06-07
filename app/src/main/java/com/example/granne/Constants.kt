@@ -20,6 +20,7 @@ object Constants {
     var UID : String = ""
     var LOCATION : String = ""
     var ABOUTME : String = ""
+    private var TAG = "Constants"
 
 
     init {
@@ -46,11 +47,11 @@ object Constants {
                     ABOUTME = userdocument.aboutme
                 }
             } else {
-                Log.d("!!!!", "No such document")
+                Log.d(TAG, "No such document")
             }
         }
             .addOnFailureListener { exception ->
-                Log.d("!!!", "get failed with ", exception)
+                Log.d(TAG, "get failed with ", exception)
             }
     }
 }

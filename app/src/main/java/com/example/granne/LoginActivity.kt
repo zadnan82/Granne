@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -34,9 +33,9 @@ class LoginActivity : AppCompatActivity() {
         emailET = findViewById(R.id.emailET)
         passwordET = findViewById(R.id.passwordET)
         forgotPasswordTV = findViewById(R.id.forgotPasswordTV)
-        cancelBtn= findViewById(R.id.cancelBtn)
+        cancelBtn = findViewById(R.id.cancelBtn)
 
-        cancelBtn.setOnClickListener{
+        cancelBtn.setOnClickListener {
             finish()
         }
 

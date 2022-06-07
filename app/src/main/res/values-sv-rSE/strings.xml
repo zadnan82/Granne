@@ -15,6 +15,8 @@
     <string name="Login">Logga in</string>
     <string name="loggedin">Inloggad</string>
     <string name="fail_to_log">E-post finns inte eller är dåligt skrivet</string>
+    <string name="entermail">Var god skriv in din e-postadress!</string>
+    <string name="sentmail">E-post har skickats för att återställa ditt lösenord.</string>
     <!--Skapa konto aktivitet-->
     <string name="create_Nickname">Smeknamn</string>
     <string name="create_Username">Användarnamn</string>
@@ -44,6 +46,8 @@
     <!--Find Match-->
     <string name="My_Interests">Mina intressen</string>
     <string name="Search_Match">Sök matchning</string>
+    <string name="add_interests">Lägg till dina intressen innan du söker!</string>
+    <string name="addtochat">Lades till i chattlistan!</string>
     <!--Settingsmeny-->
     <string name="Settings">Inställningar</string>
     <string name="Username...">Användarnamn...</string>
@@ -56,6 +60,9 @@
     <string name="ApplyPicture">Välj bild</string>
     <string name="BrowsePictures">Bläddra bilder</string>
     <string name="Change_profile_picture">Byt profilbild:</string>
+    <!--chat_list_activity-->
+    <string name="nochat">Du har inga aktiva chattar!</string>
+    <string name="msgsent">Meddelande skickat</string>
     <!--stats_dialog_fragment-->
     <string name="stats_overview">Statistiköversikt</string>
     <string name="TotalMatches">Totala matchningar</string>
@@ -64,6 +71,13 @@
     <!--Settings dropdown locations-->
     <string name="spinner_location">SpinnerIKotlin</string>
     <string name="selected_item">Valda objekt:</string>
+    <string name="newuser">Vänligen ange ett nytt användarnamn!</string>
+    <string name="namechanged">Smeknamn ändrat!</string>
+    <string name="locationchanged">Uppdaterad plats!</string>
+    <string name="accdeleted">Kontot raderat!</string>
+    <string name="updatelist">Uppdaterad intresselista</string>
+    <string name="max6">Max 6 intressen tillåtna!</string>
+    <string name="min1">Välj minst 1 intresse!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hej tomt fragment</string>
     <string name="about_this_app">Om den här appen</string>

@@ -14,6 +14,8 @@
     <string name="Login">Login</string>
     <string name="loggedin">Logged In</string>
     <string name="fail_to_log">Email does not exist or is badly written</string>
+    <string name="entermail">Please enter your email address!</string>
+    <string name="sentmail">Email successfully sent to reset your password.</string>
     <!--Skapa konto aktivitet-->
     <string name="create_Nickname">Nickname</string>
     <string name="create_Username">Username</string>
@@ -44,6 +46,8 @@
     <!--Find Match-->
     <string name="My_Interests">My interests</string>
     <string name="Search_Match">Search match</string>
+    <string name="add_interests">Add your interests before searching!</string>
+    <string name="addtochat">Added to chat list!</string>
     <!--StatsFragment-->
     <!--<string name="statistics"><u>Category Chart</u></string>
     <string name="stats_overview"><u>Personal Statistics</u></string>-->
@@ -59,6 +63,10 @@
     <string name="ApplyPicture">Apply picture</string>
     <string name="BrowsePictures">Browse pictures</string>
     <string name="Change_profile_picture">Change profile picture:</string>
+    <!--chat_list_activity-->
+    <string name="nochat">You have no active chats!</string>
+    <string name="msgsent">Message Sent</string>
+
     <!--stats_dialog_fragment-->
     <string name="stats_overview">Stats overview</string>
     <string name="TotalMatches">Totalt matches</string>
@@ -68,6 +76,13 @@
     <!--Settings dropdown locations-->
     <string name="spinner_location">SpinnerInKotlin</string>
     <string name="selected_item">Selected item:</string>
+    <string name="newuser">Please enter a new username!</string>
+    <string name="namechanged">Nickname changed!</string>
+    <string name="locationchanged">Updated location!</string>
+    <string name="accdeleted">Account deleted!</string>
+    <string name="updatelist">Updated interest list</string>
+    <string name="max6">Max 6 interests allowed!</string>
+    <string name="min1">Please select at least 1 interest!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

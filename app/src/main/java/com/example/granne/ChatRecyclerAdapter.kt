@@ -1,15 +1,11 @@
 package com.example.granne
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 
 class ChatRecyclerAdapter(
@@ -18,7 +14,7 @@ class ChatRecyclerAdapter(
 ) : RecyclerView.Adapter<ChatRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemNickname: TextView = itemView.findViewById(R.id.nicknameText)
+        val chatNickNameTV: TextView = itemView.findViewById(R.id.chatNickNameTV)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,7 +24,7 @@ class ChatRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemNickname.text = nickname[position]
+        holder.chatNickNameTV.text = nickname[position]
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ChatRoomActivity::class.java)

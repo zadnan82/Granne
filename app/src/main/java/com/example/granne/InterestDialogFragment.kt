@@ -81,9 +81,9 @@ class InterestDialogFragment : DialogFragment() {
             }
 
             when {
-                count > 6 -> Toast.makeText(activity, "Max 6 interests allowed!", Toast.LENGTH_SHORT).show()
+                count > 6 -> Toast.makeText(activity, R.string.max6, Toast.LENGTH_SHORT).show()
 
-                count <= 0 -> Toast.makeText(activity, "Please select at least 1 interest!", Toast.LENGTH_SHORT).show()
+                count <= 0 -> Toast.makeText(activity, R.string.min1, Toast.LENGTH_SHORT).show()
 
                 else -> {
                    FB_REF.collection("interests").document("interestlist")
@@ -97,7 +97,7 @@ class InterestDialogFragment : DialogFragment() {
                                         dismiss()
                                     }
                             }
-                            Toast.makeText(activity, "Updated interest list", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, R.string.updatelist, Toast.LENGTH_SHORT).show()
                             dismiss()
                         }
                 }

@@ -7,8 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -57,7 +55,7 @@ class ChatActivity : AppCompatActivity() {
             TEXT_FIELD to newMsgET.text.toString()
         )
         firestoreChat.set(newMessage).addOnSuccessListener {
-            Toast.makeText(this, "Message Sent", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.msgsent, Toast.LENGTH_SHORT).show()
         }.addOnFailureListener { e -> e.message?.let { Log.e("ERROR", it) } }
 
     }
