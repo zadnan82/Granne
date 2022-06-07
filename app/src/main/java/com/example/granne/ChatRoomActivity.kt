@@ -29,6 +29,7 @@ class ChatRoomActivity : AppCompatActivity() {
     private lateinit var chatuserNickNameTV: TextView
     lateinit var messageList: ArrayList<String>
     val db = Firebase.firestore
+    private var TAG = "ChatRoomActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,16 +65,12 @@ class ChatRoomActivity : AppCompatActivity() {
         chatDocRef.get()
             .addOnSuccessListener { task ->
                 if (!task.exists()) {
-                    Log.d("!", "No chat with the key: $chatKey")
-
                     chatDocRef.set(chatInfo)
                         .addOnSuccessListener {
-                            Log.d("!", "Created chat with $secondUserNickname")
                             updateChatUi()
                         }
                 }
                 if (task.exists()) {
-                    Log.d("!", "Joining chat with $secondUserNickname with chatId: $chatKey")
                     updateChatUi()
                 }
             }
@@ -88,16 +85,12 @@ class ChatRoomActivity : AppCompatActivity() {
             .addOnSuccessListener { list ->
                 val oldList = list.data!!.getValue("messagelist").toString()
                 messageList.add(oldList)
-
                 // add $messageList to view
-                Log.d("!","new list$messageList")
-
                 sendBtn.setOnClickListener {
                     val text = "$myNickname: ${newMessageET.text}"
                     messageList.add(text)
                     newMessageET.text.clear()
                     // add $text to view
-                    Log.d("!","Sent text: $text")
                     chatDocRef.update("messagelist", messageList)
                 }
             }
@@ -117,7 +110,7 @@ class ChatRoomActivity : AppCompatActivity() {
                             .replace(",", "")
                     }
                 } else {
-                    Log.d("!", "Current data: null")
+                    Log.d(TAG, "Current data: null")
                 }
 
             }

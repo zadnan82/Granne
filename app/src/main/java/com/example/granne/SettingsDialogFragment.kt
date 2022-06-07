@@ -37,6 +37,7 @@ class SettingsDialogFragment : DialogFragment() {
     var choosenImageBitmap: Bitmap? = null
     var curFile: Uri? = null
     val imageRef = Firebase.storage.reference
+    private var TAG = "SettingsDialogFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -102,7 +103,7 @@ class SettingsDialogFragment : DialogFragment() {
                     Toast.makeText(activity, "Updated location", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
-                    Log.w("!", "Error adding document", e)
+                    Log.w(TAG, "Error adding document", e)
                 }
         }
 
@@ -131,14 +132,14 @@ class SettingsDialogFragment : DialogFragment() {
                 .addOnSuccessListener {
                     FirebaseAuth.getInstance().currentUser!!.delete()
                         .addOnCompleteListener {
-                            Log.d("!", "User deleted in cloud database and auth")
+                            // User deleted in cloud database and auth
                             Toast.makeText(activity, "Account deleted!", Toast.LENGTH_SHORT).show()
                             val returnToLoginScreen = Intent(activity, MainActivity::class.java)
                             startActivity(returnToLoginScreen)
                         }
                 }
                 .addOnFailureListener { error ->
-                    Log.d("!", "Error! $error")
+                    Log.d(TAG, "Error! $error")
                 }
         }
         return rootView
@@ -158,7 +159,7 @@ class SettingsDialogFragment : DialogFragment() {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
-       // val uniqeString = UUID.randomUUID().toString()
+        // profile image replaced everytime user changes it instead of saving multiple images in FB
         var uploadTask = imageRef.child("${Constants.UID}/profileimage").putBytes(data)
 
          uploadTask.continueWithTask { task ->
@@ -180,7 +181,7 @@ class SettingsDialogFragment : DialogFragment() {
         .launch {
         try {
             curFile?.let {
-                //val uniqeString = UUID.randomUUID().toString()
+
                 val uploadTask = imageRef.child("${Constants.UID}/profileimage").putFile(it)
                  uploadTask.continueWithTask { task ->
                     if (!task.isSuccessful) {

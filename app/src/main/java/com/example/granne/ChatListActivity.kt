@@ -10,6 +10,7 @@ import com.example.granne.Constants.FB_REF
 
 
 class ChatListActivity : AppCompatActivity() {
+
     private var nicknameList = mutableListOf<String>()
     private var userUidList = mutableListOf<String>()
     private lateinit var chatusersRV: RecyclerView
@@ -36,8 +37,7 @@ class ChatListActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 } else {
                     for (document in result) {
-                        Log.d("!", "Matched users uid > ${document.id} ")
-                        Constants.FB_REF.collection("matchedUsers").document(document.id)
+                        FB_REF.collection("matchedUsers").document(document.id)
                             .get()
                             .addOnSuccessListener { name ->
                                 val nickname = name.data!!.getValue("nickname").toString()

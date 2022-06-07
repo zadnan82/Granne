@@ -80,8 +80,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         optionsBtn.setOnClickListener {
-            val dialog = SettingsDialogFragment()
-            dialog.show(supportFragmentManager, "optionsdialog")
+            SettingsDialogFragment().show(supportFragmentManager, "optionsdialog")
         }
 
         findMatchBtn.setOnClickListener {
@@ -89,14 +88,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
         infoBtn.setOnClickListener {
-            val dialog = CustomDialogFragment()
-            dialog.show(supportFragmentManager, "customDialog")
+           CustomDialogFragment().show(supportFragmentManager, "customDialog")
         }
     }
 
     fun statsDialogButton(view: View) {
-        val statsDialogFragment = StatsDialogFragment()
-        statsDialogFragment.show(supportFragmentManager, "statsDialog")
+        StatsDialogFragment().show(supportFragmentManager, "statsDialog")
     }
 
     override fun onBackPressed() {

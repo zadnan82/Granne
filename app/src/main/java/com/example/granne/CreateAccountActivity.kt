@@ -25,6 +25,7 @@ class CreateAccountActivity : AppCompatActivity() {
     lateinit var nickname: String
     lateinit var email: String
     lateinit var password: String
+    private var TAG = "CreateAccountActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,16 +94,15 @@ class CreateAccountActivity : AppCompatActivity() {
                     db.collection("userData")
                         .document(uid).set(currentUser)
                         .addOnSuccessListener {
-                            Log.d("!!!", "User added to Database with same UID as Firestore Auth ")
-                        }
+                             }
                         .addOnFailureListener { e ->
-                            Log.w("!!!", "Error adding document", e)
+                            Log.w(TAG, "Error adding document", e)
                         }
                     updateUI(user)
 
                 } else {
 
-                    Log.w("!!!", "createUserWithEmail:failure", task.exception)
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
                         this, R.string.fail_login, Toast.LENGTH_LONG
                     ).show()
@@ -113,11 +113,10 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            Log.d("!!!", "Account to $nickname $email is created, UID is ${user.uid}")
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
 
-        } else Log.d("!!!", "User failed to log in")
+        } else Log.d(TAG, "User failed to log in")
     }
 
     private fun checkUserInputs(): Boolean {

@@ -83,7 +83,7 @@ class PersonFindMatchRecycleViewAdapter(val context: Context, val persons: List<
                     .collection("matchedUsers").document(UID)
                     .set(mapOfDetails)
                     .addOnSuccessListener {
-                        Log.d("!", "Added yourself to the other persons Matched users list!")
+                       // Added yourself to the other persons Matched users list!
                     }
     }
 

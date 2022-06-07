@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var locale: Locale
     private var currentLanguage = "en"
     private var currentLang: String? = null
-
+    private var TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
 
         if (currentUser != null) {
             startActivity(Intent(this, HomeActivity::class.java))
-            Log.d("!!!","Auto logged in with email: ${auth.currentUser!!.email}")
+            Log.d(TAG,"Auto logged in with email: ${auth.currentUser!!.email}")
         } else {
-            Log.d("!!!", "No user logged in")
+            Log.d(TAG, "No user logged in")
         }
 
         currentLanguage = intent.getStringExtra(currentLang).toString()

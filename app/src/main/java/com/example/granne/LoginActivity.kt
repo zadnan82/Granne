@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var cancelBtn: ImageButton
     lateinit var email: String
     lateinit var password: String
+    private var TAG = "LoginActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,14 +70,14 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d("!", "signInWithEmail:success")
+                    Log.d(TAG, "signInWithEmail:success")
                     Toast.makeText(
                         this, R.string.loggedin, Toast.LENGTH_LONG
                     ).show()
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
-                    Log.w("!", "signInWithEmail:failure", task.exception)
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         this, R.string.fail_to_log, Toast.LENGTH_LONG
                     ).show()
@@ -87,8 +88,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            Log.d("!", "Logged in")
+            Log.d(TAG, "Logged in")
             startActivity(Intent(this, HomeActivity::class.java))
-        } else Log.d("!", "User failed to log in")
+        } else Log.d(TAG, "User failed to log in")
     }
 }
