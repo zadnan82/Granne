@@ -1,4 +1,4 @@
-package com.example.granne
+package com.example.granne.Chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,9 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.granne.Constants.FB_REF
+import com.example.granne.Adapters.ChatRecyclerAdapter
+import com.example.granne.Extras.Constants.FB_REF
+import com.example.granne.R
 
 
 class ChatListActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.granne
+package com.example.granne.Fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import com.example.granne.Extras.Constants
+import com.example.granne.Activities.MainActivity
+import com.example.granne.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore

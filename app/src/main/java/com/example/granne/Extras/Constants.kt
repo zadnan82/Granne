@@ -1,4 +1,4 @@
-package com.example.granne
+package com.example.granne.Extras
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
@@ -55,6 +55,7 @@ object Constants {
             }
     }
 }
+
 data class UserClass(  var email: String = "", var nickname: String = "" ,
                        var uid: String = "", var location: String = "",
                        var aboutme: String = "")

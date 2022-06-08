@@ -1,4 +1,4 @@
-package com.example.granne
+package com.example.granne.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.ImageButton
-import com.example.granne.Constants.NICKNAME
-import com.example.granne.Constants.update
+import com.example.granne.Chat.ChatListActivity
+import com.example.granne.Extras.Constants.NICKNAME
+import com.example.granne.Extras.Constants.update
+import com.example.granne.Fragments.CustomDialogFragment
+import com.example.granne.Fragments.SettingsDialogFragment
+import com.example.granne.Fragments.StatsDialogFragment
+import com.example.granne.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore

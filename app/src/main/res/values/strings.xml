@@ -78,6 +78,10 @@
     <!--Settings dropdown locations-->
     <string name="spinner_location">SpinnerInKotlin</string>
     <string name="selected_item">Selected item:</string>
+    <string name="changenick">Change NickName</string>
+    <string name="accountinfo">Account Information</string>
+    <string name="signout">SIGN OUT</string>
+    <string name="deleteaccount">DELETE ACCOUNT</string>
     <string name="newuser">Please enter a new username!</string>
     <string name="namechanged">Nickname changed!</string>
     <string name="locationchanged">Updated location!</string>

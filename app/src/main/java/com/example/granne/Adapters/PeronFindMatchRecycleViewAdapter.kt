@@ -1,7 +1,6 @@
 package com.example.granne
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,10 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.granne.Constants.NICKNAME
-import com.example.granne.Constants.UID
+import com.example.granne.Extras.Constants
+import com.example.granne.Extras.Constants.NICKNAME
+import com.example.granne.Extras.Constants.UID
+import com.example.granne.Extras.PersonFindMatch
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -21,9 +22,7 @@ class PersonFindMatchRecycleViewAdapter(
     val db = Firebase.firestore
     val layoutInflater = LayoutInflater.from(context)
 
-    override fun getItemCount(): Int {
-        return persons.size
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = layoutInflater.inflate(R.layout.list_item_match, parent, false)
@@ -84,4 +83,7 @@ class PersonFindMatchRecycleViewAdapter(
             }
     }
 
+    override fun getItemCount(): Int {
+        return persons.size
+    }
 }
