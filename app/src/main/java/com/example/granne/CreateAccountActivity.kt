@@ -75,6 +75,7 @@ class CreateAccountActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    // Sign in success
                     Toast.makeText(
                         this, R.string.success_create, Toast.LENGTH_LONG
                     ).show()
@@ -86,7 +87,7 @@ class CreateAccountActivity : AppCompatActivity() {
                         "nickname" to nickname,
                         "email" to email,
                         "uid" to user.uid,
-                        "location" to "",
+                        "location" to "", //  These will be filled later in the app
                         "aboutme" to ""
                     )
 
@@ -100,7 +101,7 @@ class CreateAccountActivity : AppCompatActivity() {
                     updateUI(user)
 
                 } else {
-
+                    // Sign in failed
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
                         this, R.string.fail_login, Toast.LENGTH_LONG

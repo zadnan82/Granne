@@ -3,10 +3,7 @@ package com.example.granne
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -19,6 +16,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var nickNameTV: TextView
     lateinit var newMsgET: EditText
     lateinit var textDisplay: TextView
+    lateinit var cancelBtn : ImageButton
 
     companion object {
         const val COLLECTION_KEY = "Chat"
@@ -39,10 +37,15 @@ class ChatActivity : AppCompatActivity() {
         sendMsgBtn = findViewById(R.id.sendMsgBtn)
         nickNameTV = findViewById(R.id.nickNameTV)
         newMsgET = findViewById(R.id.newMsgET)
+        cancelBtn = findViewById(R.id.cancelBtn)
+
         nickNameTV.text = "User"
 
-
         realtimeUpdateListener()
+
+        cancelBtn.setOnClickListener {
+            finish()
+        }
 
         sendMsgBtn.setOnClickListener {
             sendMessage()

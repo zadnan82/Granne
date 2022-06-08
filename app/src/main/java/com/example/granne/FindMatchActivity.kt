@@ -3,6 +3,7 @@ package com.example.granne
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ class FindMatchActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     var persons = mutableListOf<PersonFindMatch>()
     var userInterests = mutableListOf<String>()
+    lateinit var cancelBtn : ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,12 @@ class FindMatchActivity : AppCompatActivity() {
         interestButton = findViewById(R.id.interestButton)
         searchMatchButton = findViewById(R.id.searchMatchButton)
         recyclerView = findViewById(R.id.rwFindMatch)
+
+        cancelBtn = findViewById(R.id.cancelBtn)
+
+        cancelBtn.setOnClickListener {
+            finish()
+        }
 
         interestButton.setOnClickListener {
             InterestDialogFragment().show(supportFragmentManager, "interestdialog")

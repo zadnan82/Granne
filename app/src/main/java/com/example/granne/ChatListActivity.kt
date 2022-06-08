@@ -2,6 +2,7 @@ package com.example.granne
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,15 +13,23 @@ class ChatListActivity : AppCompatActivity() {
 
     private var nicknameList = mutableListOf<String>()
     private var userUidList = mutableListOf<String>()
-    private lateinit var chatUsersRV: RecyclerView
+    private lateinit var chatListRV: RecyclerView
+    lateinit var cancelBtn : ImageButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
 
-        chatUsersRV = findViewById(R.id.chatUsersRV)
+        cancelBtn = findViewById(R.id.cancelBtn)
+        chatListRV = findViewById(R.id.chatListRV)
 
         getAllMatchedUsers()
+
+        cancelBtn.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun getAllMatchedUsers() {
@@ -47,8 +56,8 @@ class ChatListActivity : AppCompatActivity() {
 
     private fun addToList(nickname: String, userUid: String) {
 
-        chatUsersRV.layoutManager = LinearLayoutManager(this)
-        chatUsersRV.adapter = ChatRecyclerAdapter(nicknameList, userUidList)
+        chatListRV.layoutManager = LinearLayoutManager(this)
+        chatListRV.adapter = ChatRecyclerAdapter(nicknameList, userUidList)
         nicknameList.add(nickname)
         userUidList.add(userUid)
     }

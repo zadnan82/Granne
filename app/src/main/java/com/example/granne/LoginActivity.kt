@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    // Sign in success. Start HomeActivity
                     Log.d(TAG, "signInWithEmail:success")
                     Toast.makeText(
                         this, R.string.loggedin, Toast.LENGTH_LONG
@@ -76,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
+                    // If sign in fails. Display a toast to the user
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         this, R.string.fail_to_log, Toast.LENGTH_LONG

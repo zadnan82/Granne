@@ -43,11 +43,11 @@ class ChatRoomActivity : AppCompatActivity() {
         secondUserNickname = intent.getStringExtra("secondUserNickname").toString()
         secondUserUid = intent.getStringExtra("secondUserUid").toString()
 
-        getChatKey()
+        getChatID()
 
     }
 
-    fun getChatKey() {
+    private fun getChatID() {
 
         FB_REF.collection("matchedUsers").document(secondUserUid).get()
             .addOnSuccessListener { documents ->

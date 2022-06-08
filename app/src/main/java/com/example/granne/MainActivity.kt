@@ -28,14 +28,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         auth = Firebase.auth
-        val currentUser = auth.currentUser
 
-        if (currentUser != null) {
-            startActivity(Intent(this, HomeActivity::class.java))
-            Log.d(TAG,"Auto logged in with email: ${auth.currentUser!!.email}")
-        } else {
-            Log.d(TAG, "No user logged in")
-        }
+        autoLogin()
 
         currentLanguage = intent.getStringExtra(currentLang).toString()
         languageSpinner = findViewById(R.id.languageSpinner)
@@ -64,6 +58,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun autoLogin() {
+
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            startActivity(Intent(this, HomeActivity::class.java))
+            Log.d(TAG,"Auto logged in with email: ${auth.currentUser!!.email}")
+        } else {
+            Log.d(TAG, "No user logged in")
+        }
+    }
     private fun setLocale(localeName: String) {
         if (localeName != currentLanguage) {
             locale = Locale(localeName)

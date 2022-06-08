@@ -18,7 +18,7 @@ object Constants {
     val email = user?.email.toString()
     var NICKNAME : String = "nickname"
     var UID : String = ""
-    var LOCATION : String = ""
+    var LOCATION : String = "location"
     var ABOUTME : String = ""
     private var TAG = "Constants"
 

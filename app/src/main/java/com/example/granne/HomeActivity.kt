@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
         chatBtn = findViewById(R.id.chatBtn)
         infoBtn = findViewById(R.id.infoBtn)
 
-        // Nickname is picked from Constants File
+        // Nickname is already downloaded in Constants File
         nicknameUnderIcon.text = NICKNAME
 
         chatBtn.setOnClickListener {

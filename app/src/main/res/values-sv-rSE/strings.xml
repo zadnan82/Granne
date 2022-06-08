@@ -8,6 +8,8 @@
     <string name="login">Logga in</string>
     <string name="spinner">Välj Språk</string>
     <string name="language_selected">Språk redan valt!</string>
+    <string name="register">Registrera</string>
+
     <!--Logga in aktivitet-->
     <string name="login_Username">Användarnamn</string>
     <string name="login_Password">Lösenord</string>
@@ -17,6 +19,7 @@
     <string name="fail_to_log">E-post finns inte eller är dåligt skrivet</string>
     <string name="entermail">Var god skriv in din e-postadress!</string>
     <string name="sentmail">E-post har skickats för att återställa ditt lösenord.</string>
+
     <!--Skapa konto aktivitet-->
     <string name="create_Nickname">Smeknamn</string>
     <string name="create_Username">Användarnamn</string>
@@ -33,6 +36,7 @@
     <string name="success_create">Kontot skapat!</string>
     <string name="fail_login">E-post redan används eller dåligt skrivet!</string>
     <string name="tos_agree">Jag godkänner användarvillkoren</string>
+
     <!--Hemskärmen-->
     <string name="Find_Match">Hitta matchningar</string>
     <string name="Options">Alternativ</string>
@@ -43,11 +47,13 @@
     <string name="no_active_match">Inga matchningar funna</string>
     <string name="aboutme">Om mig</string>
     <string name="account_overv">Konto översikt</string>
+
     <!--Find Match-->
     <string name="My_Interests">Mina intressen</string>
     <string name="Search_Match">Sök matchning</string>
     <string name="add_interests">Lägg till dina intressen innan du söker!</string>
     <string name="addtochat">Lades till i chattlistan!</string>
+
     <!--Settingsmeny-->
     <string name="Settings">Inställningar</string>
     <string name="Username...">Användarnamn...</string>
@@ -60,14 +66,19 @@
     <string name="ApplyPicture">Välj bild</string>
     <string name="BrowsePictures">Bläddra bilder</string>
     <string name="Change_profile_picture">Byt profilbild:</string>
+
     <!--chat_list_activity-->
     <string name="nochat">Du har inga aktiva chattar!</string>
     <string name="msgsent">Meddelande skickat</string>
+    <string name="sendmsg">Skicka meddelande</string>
+    <string name="msgs">Meddelande</string>
+
     <!--stats_dialog_fragment-->
     <string name="stats_overview">Statistiköversikt</string>
     <string name="TotalMatches">Totala matchningar</string>
     <string name="ThumbsUp">Tummar upp</string>
     <string name="statistics">Statistik</string>
+
     <!--Settings dropdown locations-->
     <string name="spinner_location">SpinnerIKotlin</string>
     <string name="selected_item">Valda objekt:</string>
@@ -78,7 +89,8 @@
     <string name="updatelist">Uppdaterad intresselista</string>
     <string name="max6">Max 6 intressen tillåtna!</string>
     <string name="min1">Välj minst 1 intresse!</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- TOS fragment -->
     <string name="hello_blank_fragment">Hej tomt fragment</string>
     <string name="about_this_app">Om den här appen</string>
     <string name="aboutThisAppText">Granne är en app som gör det möjligt för dig som äldre att hitta personer som delar samma intressen som du.</string>
@@ -86,5 +98,10 @@
     <string name="how_work_text1"> Appen använder data från ditt konto för att hitta likheter med andra människor. Denna process sker i fönstret Hitta matchning.</string>
     <string name="how_work_text2">Du kommer dock inte att visas för andra användare förrän du har angett dina intressen.</string>
 
+    <string name="tos_text">Villkor</string>
+    <string name="tos_text1">Genom att skapa ett Friendzone-konto eller använda appen via en mobil applikation eller dator godkänner du att du är bunden av dessa användarvillkor kan vi då och då göra ändringar i detta avtal och tjänsten vi kan göra detta för en mängd olika skäl som reflekterar_ändringar i eller juridiska krav nya funktioner eller förändringar i affärspraxis.</string>
+    <string name="tos_text2">Du måste vara minst 18 år för att skapa ett konto på friendzone och använda tjänsten.</string>
+    <string name="tos_text3">Friendzone strävar alltid efter att förbättra tjänsten och ge dig fler funktioner som är intressanta och användbara för dig, detta innebär att vi då och då kan lägga till nya produktfunktioner eller göra förbättringar och till och med ta bort vissa funktioner och om dessa åtgärder inte väsentligt påverkar dina rättigheter eller skyldigheter som vi kanske inte meddelar dig innan vi implementerar dem.</string>
+    <string name="tos_text4">Du kan avsluta ditt konto när som helst av vilken anledning som helst!</string>
 
 </resources>
