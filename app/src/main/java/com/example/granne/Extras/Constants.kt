@@ -24,10 +24,10 @@ object Constants {
 
 
     init {
-        update()
+        updateFirebase()
     }
 
-    fun update() {
+    fun updateFirebase() {
 
         val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {

@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.ImageButton
 import com.example.granne.Chat.ChatListActivity
 import com.example.granne.Extras.Constants.NICKNAME
-import com.example.granne.Extras.Constants.update
+import com.example.granne.Extras.Constants.updateFirebase
 import com.example.granne.Fragments.CustomDialogFragment
 import com.example.granne.Fragments.SettingsDialogFragment
 import com.example.granne.Fragments.StatsDialogFragment
@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        update()
+        updateFirebase()
 
         auth = Firebase.auth
 

@@ -123,7 +123,7 @@ class SettingsDialogFragment : DialogFragment() {
         }
 
         applyPicturesBtn.setOnClickListener {
-            uploadImage()
+            uploadImageToFirebase()
         }
 
         signOutBtn.setOnClickListener {
@@ -155,7 +155,7 @@ class SettingsDialogFragment : DialogFragment() {
         return rootView
     }
 
-    fun uploadImage() {
+    fun uploadImageToFirebase() {
         if (chosenImageUrl != null || chosenImageBitmap == null) {
             uploadImageToStorage()
         } else if (chosenImageBitmap != null || chosenImageUrl != null) {
