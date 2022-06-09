@@ -48,8 +48,22 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_info_button.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/drawable-anydpi/ic_options_button.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/drawable-anydpi/ic_stats_button.xml" value="0.12447916666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/background_1.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/circle_btn.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/drawable/ic_email.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_find_user.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_interest_list.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_nickname.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_password.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_user_icon.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_user_interest_list.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/selected_input_layout.xml" value="0.1075" />
         <entry key="app/src/main/res/layout-sv-rSE/strings.xml" value="0.10833333333333334" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.22592592592592592" />
+        <entry key="app/src/main/res/layout/activity_chat_list.xml" value="0.22592592592592592" />
+        <entry key="app/src/main/res/layout/activity_chat_room.xml" value="0.22592592592592592" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_find_match.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
@@ -58,11 +72,15 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_recover_password.xml" value="0.10833333333333334" />
-        <entry key="app/src/main/res/layout/fragment_custom_dialog.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/fragment_custom_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_interest_dialog.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/fragment_settings_dialog.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_tos_dialog.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/list_item_match.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/stats_dialog_fragment.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/stats_dialog_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/user_item_layout.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1075" />
       </map>
     </option>
   </component>

@@ -5,96 +5,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_1"
-    tools:context=".CreateAccountActivity"
+    tools:context=".Activities.CreateAccountActivity"
     tools:ignore="HardcodedText">
 
+
     <EditText
-        android:id="@+id/nicknameEditText"
+        android:id="@+id/nicknameET"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/selected_input_layout"
         android:drawableStart="@drawable/ic_nickname"
         android:drawablePadding="10dp"
-        android:hint="Nickname"
+        android:hint="@string/create_Nickname"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
         android:paddingEnd="5dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/emailEditText"
+        app:layout_constraintBottom_toTopOf="@+id/emailET"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailET"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/selected_input_layout"
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="10dp"
-        android:hint="Email"
+        android:hint="@string/create_email"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
         android:paddingEnd="5dp"
         android:singleLine="true"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+        app:layout_constraintBottom_toTopOf="@+id/passwordET"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/passwordET"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/selected_input_layout"
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="10dp"
-        android:hint="Password"
+        android:hint="@string/create_Password"
         android:inputType="textPassword"
         android:paddingStart="10dp"
         android:paddingEnd="5dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tosText"
+        android:id="@+id/tosTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:text="I agree to the terms of service"
+        android:text="@string/tos_agree"
         android:textColor="@color/colorButton"
         android:textSize="17sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordET" />
 
     <CheckBox
         android:id="@+id/tosCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tosText"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintEnd_toStartOf="@+id/tosTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordET" />
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/registerBtn"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="264dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Register"
+        android:text="@string/register"
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageButton
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

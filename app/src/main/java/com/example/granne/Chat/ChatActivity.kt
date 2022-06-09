@@ -1,27 +1,23 @@
-package com.example.granne
+package com.example.granne.Chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+import android.widget.*
+import com.example.granne.R
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class ChatActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
 
-    lateinit var buttonSendMessage: Button
-    lateinit var nicknameTextView: TextView
-    lateinit var messageEditText: EditText
+    lateinit var sendMsgBtn: Button
+    lateinit var nickNameTV: TextView
+    lateinit var newMsgET: EditText
     lateinit var textDisplay: TextView
+    lateinit var cancelBtn : ImageButton
 
     companion object {
         const val COLLECTION_KEY = "Chat"
@@ -37,29 +33,33 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        auth = Firebase.auth
 
         textDisplay = findViewById(R.id.textDisplay)
-        buttonSendMessage = findViewById(R.id.buttonSendMessage)
-        nicknameTextView = findViewById(R.id.nicknameTextView)
-        messageEditText = findViewById(R.id.messageEditText)
-        nicknameTextView.text = "User"
+        sendMsgBtn = findViewById(R.id.sendMsgBtn)
+        nickNameTV = findViewById(R.id.nickNameTV)
+        newMsgET = findViewById(R.id.newMsgET)
+        cancelBtn = findViewById(R.id.cancelBtn)
 
+        nickNameTV.text = "User"
 
         realtimeUpdateListener()
 
-        buttonSendMessage.setOnClickListener {
+        cancelBtn.setOnClickListener {
+            finish()
+        }
+
+        sendMsgBtn.setOnClickListener {
             sendMessage()
         }
     }
 
     private fun sendMessage() {
         val newMessage = mapOf(
-            NAME_FIELD to nicknameTextView.text.toString(),
-            TEXT_FIELD to messageEditText.text.toString()
+            NAME_FIELD to nickNameTV.toString(),
+            TEXT_FIELD to newMsgET.text.toString()
         )
         firestoreChat.set(newMessage).addOnSuccessListener {
-            Toast.makeText(this@ChatActivity, "Message Sent", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.msgsent, Toast.LENGTH_SHORT).show()
         }.addOnFailureListener { e -> e.message?.let { Log.e("ERROR", it) } }
 
     }

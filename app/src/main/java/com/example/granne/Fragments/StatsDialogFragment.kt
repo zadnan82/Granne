@@ -1,20 +1,19 @@
-package com.example.granne
+package com.example.granne.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+import com.example.granne.Extras.Constants
+import com.example.granne.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class StatsDialogFragment : DialogFragment() {
 
-    private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
 
     override fun onCreateView(
@@ -22,24 +21,21 @@ class StatsDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-
-        auth = Firebase.auth
-
         val rootView: View = inflater.inflate(R.layout.stats_dialog_fragment, container, false)
-        val docRef = db.collection("userData").document(auth.currentUser!!.uid)
+        val nicknameTV = rootView.findViewById<TextView>(R.id.nicknameTV)
+        val emailTV = rootView.findViewById<TextView>(R.id.emailTV)
+        val aboutMeTV = rootView.findViewById<TextView>(R.id.aboutMeTV)
+        val matchedUsersTV = rootView.findViewById<TextView>(R.id.matchedUsersTV)
+        val cancelBtn = rootView.findViewById<ImageButton>(R.id.cancelBtn)
 
-        val nickname = rootView.findViewById<TextView>(R.id.nicknameText)
-        val email = rootView.findViewById<TextView>(R.id.emailText)
-        val aboutMe = rootView.findViewById<TextView>(R.id.aboutMeText)
-        val matchedUsers = rootView.findViewById<TextView>(R.id.matchedUsers)
+        cancelBtn.setOnClickListener {
+            dismiss()
+        }
+                nicknameTV.text = Constants.NICKNAME
+                emailTV.text = Constants.email
+                aboutMeTV.text = Constants.ABOUTME
 
-        docRef.get()
-            .addOnSuccessListener { documents ->
-                nickname.text = "Nickname: ${documents.data!!.getValue("nickname")}"
-                email.text = "Email: ${documents.data!!.getValue("email")}"
-                aboutMe.text = "About me: ${documents.data!!.getValue("aboutme")}"
-
-                docRef.collection("matchedUsers").get()
+                Constants.FB_REF.collection("matchedUsers").get()
                     .addOnSuccessListener { usersMatched ->
                         val matchedList = mutableListOf<String>()
 
@@ -51,11 +47,15 @@ class StatsDialogFragment : DialogFragment() {
                             }
                         }
                         if (matchedList.isNotEmpty()) {
-                            matchedUsers.text = "Active matches with: $matchedList"
+                            val matchtext = getString(R.string.active_match)
+                            matchedUsersTV.text = " $matchtext $matchedList"
+                        } else {
+                            val nonmatchtext = getString(R.string.no_active_match)
+                            matchedUsersTV.text = "$nonmatchtext"
                         }
 
                     }
-            }
+
 
         return rootView
     }

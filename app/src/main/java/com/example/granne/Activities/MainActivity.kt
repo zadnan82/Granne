@@ -1,15 +1,14 @@
-package com.example.granne
+package com.example.granne.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.example.granne.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
@@ -19,31 +18,22 @@ import kotlin.system.exitProcess
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
-    lateinit var spinner: Spinner
+    lateinit var languageSpinner: Spinner
     lateinit var locale: Locale
-
     private var currentLanguage = "en"
     private var currentLang: String? = null
-
+    private var TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+
         auth = Firebase.auth
 
-        val currentUser = auth.currentUser
-        if (currentUser != null) { // Check if user is signed in
-            startActivity(Intent(this, HomeActivity::class.java))
-            Log.d("!","Auto logged in with email: ${auth.currentUser!!.email}")
-        } else {
-            Log.d("!", "No user logged in")
-        }
+        autoLogin()
 
-
-        title = "Granne"
         currentLanguage = intent.getStringExtra(currentLang).toString()
-        spinner = findViewById(R.id.spinner)
+        languageSpinner = findViewById(R.id.languageSpinner)
 
         val list = ArrayList<String>()
         list.add("Language")
@@ -52,14 +42,11 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
+        languageSpinner.adapter = adapter
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long,
+                parent: AdapterView<*>, view: View?, position: Int, id: Long,
             ) {
                 when (position) {
                     0 -> {
@@ -68,12 +55,20 @@ class MainActivity : AppCompatActivity() {
                     2 -> setLocale("sv")
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {}
-
         }
     }
 
+    fun autoLogin() {
+
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            startActivity(Intent(this, HomeActivity::class.java))
+            Log.d(TAG,"Auto logged in with email: ${auth.currentUser!!.email}")
+        } else {
+            Log.d(TAG, "No user logged in")
+        }
+    }
     private fun setLocale(localeName: String) {
         if (localeName != currentLanguage) {
             locale = Locale(localeName)
@@ -87,10 +82,7 @@ class MainActivity : AppCompatActivity() {
             refresh.putExtra(currentLang, localeName)
             startActivity(refresh)
         } else {
-            Toast.makeText(
-                this@MainActivity,
-                "Language already selected!",
-                Toast.LENGTH_SHORT
+            Toast.makeText(this, R.string.language_selected, Toast.LENGTH_SHORT
             ).show();
         }
     }
@@ -106,13 +98,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startLoginActivity(view: View) {
-        val loginIntent = Intent(this, LoginActivity::class.java)
-        startActivity(loginIntent)
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     fun startCreateAccount(view: View) {
-        val createAccountIntent = Intent(this, CreateAccountActivity::class.java)
-        startActivity(createAccountIntent)
+        startActivity(Intent(this, CreateAccountActivity::class.java))
     }
 
 

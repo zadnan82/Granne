@@ -5,19 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_1"
-    tools:context=".ChatListActivity"
+    tools:context=".Chat.ChatListActivity"
     tools:ignore="HardcodedText">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatRecycleView"
+        android:id="@+id/chatListRV"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:itemCount="5"
         tools:listitem="@layout/user_item_layout" />
+
+    <ImageButton
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

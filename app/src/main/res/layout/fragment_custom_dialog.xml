@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomDialogFragment"
+    tools:context=".Fragments.CustomDialogFragment"
     tools:ignore="HardcodedText">
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="How does it work?"
+        android:text="@string/how_work"
         android:textColor="@color/colorButton"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:text="Granne is an app that makes it possible for you as an older person to find people who share the same interests as you."
+        android:text="@string/aboutThisAppText"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="The app uses data from your account to find similarities with other people. This process happens inside the Find Match window.   "
+        android:text="@string/how_work_text1"
         android:textSize="20sp"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -66,11 +66,24 @@
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="However you will not be shown to other users until you have entered your interests."
+        android:text="@string/how_work_text2"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+    <ImageButton
+        android:id="@+id/cancelBtn"
+        android:layout_width="34dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.994"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

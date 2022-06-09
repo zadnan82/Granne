@@ -1,11 +1,16 @@
-package com.example.granne
+package com.example.granne.Extras
+
 
 data class PersonFindMatch(
     val name: Any? = null,
     val aboutMe: Any? = null,
     val intressen: MutableCollection<Any>? = null,
-    var uid: Any? = null,
-    val buttonAdd: Any? = null,
-    val image: Int? = R.drawable.userim,
-) {
+    var uid: Any? = null
+
+)
+
+
+
+
+{
 }

@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_1"
-    tools:context=".ChatRoomActivity"
+    tools:context=".Chat.ChatRoomActivity"
     tools:ignore="HardcodedText">
 
     <TextView
-        android:id="@+id/messageTextView"
+        android:id="@+id/messageTV"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="40dp"
@@ -18,10 +18,10 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/chatuserNickNameTV" />
 
     <EditText
-        android:id="@+id/newMessageEditText"
+        android:id="@+id/newMessageET"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/messageButton"
+        android:id="@+id/sendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
@@ -44,10 +44,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newMessageEditText" />
+        app:layout_constraintStart_toEndOf="@+id/newMessageET" />
 
     <TextView
-        android:id="@+id/userTitle"
+        android:id="@+id/chatuserNickNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"

@@ -1,15 +1,13 @@
-package com.example.granne
+package com.example.granne.Adapters
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.example.granne.Chat.ChatRoomActivity
+import com.example.granne.R
 
 
 class ChatRecyclerAdapter(
@@ -17,13 +15,8 @@ class ChatRecyclerAdapter(
     private var userUid: MutableList<String>,
 ) : RecyclerView.Adapter<ChatRecyclerAdapter.ViewHolder>() {
 
-    var auth = Firebase.auth
-    val db = Firebase.firestore
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val itemNickname: TextView = itemView.findViewById(R.id.nicknameText)
-
+        val chatNickNameTV: TextView = itemView.findViewById(R.id.chatNickNameTV)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,10 +26,9 @@ class ChatRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemNickname.text = nickname[position]
+        holder.chatNickNameTV.text = nickname[position]
 
         holder.itemView.setOnClickListener {
-            //When pressing on a user in the list, go to ChatRoomActivity
             val intent = Intent(holder.itemView.context, ChatRoomActivity::class.java)
                 .putExtra("secondUserNickname", nickname[position])
                 .putExtra("secondUserUid", userUid[position])

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Account overview"
+        android:text="@string/account_overv"
         android:textColor="@color/colorButton"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -21,55 +21,67 @@
 
 
     <TextView
-        android:id="@+id/nicknameText"
+        android:id="@+id/nicknameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:text="Nickname"
+        android:text="@string/create_Nickname"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HeaderTextView" />
 
     <TextView
-        android:id="@+id/emailText"
+        android:id="@+id/emailTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Email"
+        android:text="@string/create_email"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nicknameText" />
+        app:layout_constraintTop_toBottomOf="@+id/nicknameTV" />
 
     <TextView
-        android:id="@+id/aboutMeText"
+        android:id="@+id/aboutMeTV"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="About me"
+        android:text="@string/aboutme"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailTV" />
 
     <TextView
-        android:id="@+id/matchedUsers"
+        android:id="@+id/matchedUsersTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:text="No matched users found"
+        android:text="@string/no_active_match"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aboutMeText"
+        app:layout_constraintTop_toBottomOf="@+id/aboutMeTV"
         app:layout_constraintVertical_bias="0.0" />
+
+
+    <ImageButton
+        android:id="@+id/cancelBtn"
+        android:layout_width="34dp"
+        android:layout_height="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.994"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
